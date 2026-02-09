@@ -1,0 +1,30 @@
+<!-- templates/partials/players.html -->
+<section id="players" class="section-players">
+    <div class="container">
+        <div class="section-title">
+            <h2>Наши играчи</h2>
+        </div>
+        <p class="section-subtitle">Упознајте наше првотимце који већ годинама представљају тим у Јужнобачкој лиги.</p>
+        <div class="players-grid">
+            <!-- Player 1 -->
+            {% for player in club_players %}
+            <div class="player-card">
+                <div class="player-img">
+                    {% if player.image %}
+                    <img src="{{ player.image.url }}" alt="{{ player.full_name }}" loading="lazy">
+                {% else %}
+                    <div class="player-img-placeholder">
+                        <i class="fas fa-chess-king"></i>
+                    </div>
+                {% endif %}
+                </div>
+                <div class="player-info">
+                    <h3>{{ player.first_name }} {{ player.last_name }}</h3>
+                    <div class="player-rating">Рејтинг: {{ player.rating }}</div>
+                    <p>{{ player.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

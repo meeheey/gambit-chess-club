@@ -1,0 +1,21 @@
+<!-- templates/web_page/home.html -->
+{% extends 'web_page/base.html' %}
+
+{% block title %}Краљев гамбит Бач{% endblock %}
+
+{% block content %}
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Врати се у доба шаховског романтизма</h2>
+            <p>Сви играчи су добродошли у наш клуб!</p>
+            <a href="#contact" class="cta-button">Придружи се</a>
+        </div>
+    </section>
+
+    {% include 'web_page/partials/players.html' %}
+    {% include 'web_page/partials/tournaments.html' %}
+    {% include 'web_page/partials/league.html' %}
+    {% include 'web_page/partials/about.html' %}
+    {% include 'web_page/partials/contact.html' %}
+{% endblock %}

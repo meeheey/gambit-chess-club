@@ -1,0 +1,66 @@
+<section id="about" class="section-about" style="background-color: #f0f0f0;">
+  <div class="container">
+    <div class="section-title">
+      <h2>О нама</h2>
+    </div>
+
+    <div class="about-content">
+      <div class="about-text">
+        <h3>О нама</h3>
+        <p>Шаховски клуб Краљев гамбит је спортско удружење из Бача које се бави промоцијом шаха и шаховске културе.</p>
+        <p>Организујемо турнире, тренирамо у просторијама клуба и радимо на напретку наших играча, који остварују запажене шаховске резултате.</p>
+        <p>Посебно истичемо нашу школу шаха за децу, у којој се ради с пажњом, уз старовременску посвећеност.</p>
+        <p>Да бисте видели како тренирамо, покушајте да решите шаховски проблем настао из позиција Краљевог гамбита без помоћи рачунара, у глави или за таблом, и проверите решење.</p>
+        <p>У нашем клубу, учимо се комбинаторици старих мајстора, али пре свега њиховој срчаности.</p>
+      </div>
+
+      <div class="puzzle-card">
+  <div class="puzzle-header">
+    <h4>Проблем</h4>
+    <span class="puzzle-subtitle">Нађи најбољи потез за белог</span>
+  </div>
+
+  <div id="chessBoard"></div>
+
+  <div class="puzzle-solution">
+    <strong>Решење: </strong> <span class="spoiler">{{ puzzle_solution|safe }}</span>
+</div>
+
+</div>
+</div>
+
+        <!-- jQuery -->
+<script src="/static/js/jquery-3.6.0.min.js"></script>
+
+<!-- Chessboard.js -->
+<link rel="stylesheet" href="/static/css/chessboard-1.0.0.min.css">
+<script src="/static/js/chessboard-1.0.0.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    try {
+        var board = ChessBoard('chessBoard', {
+            position: '{{ puzzle_fen|escapejs }}',
+            draggable: false,
+            pieceTheme: '/static/img/chesspieces/wikipedia/{piece}.png'
+        });
+
+    } catch (err) {
+        console.error(err);
+        $('.puzzle').html('<p style="text-align:center;">Chessboard failed to load</p>');
+    }
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    $('.spoiler').click(function() {
+        $(this).toggleClass('revealed');
+    });
+});
+</script>
+
+
+    </div>
+  </div>
+</section>
