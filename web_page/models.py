@@ -14,11 +14,19 @@ class ClubMember(models.Model):
         max_length=100,
         help_text='Prezime člana tima'
     )
+
+    fide_id = models.CharField(
+        'FIDE ID',
+        max_length=20,
+        blank=True,
+        null=True
+    )
     
-    rating = models.CharField(
+   
+    rating = models.PositiveIntegerField(
         'Rejting',
-        max_length=4,
-        help_text='FIDE rejting za standardni šah'
+        blank=True,
+        null=True
     )
     
     description = models.TextField(
