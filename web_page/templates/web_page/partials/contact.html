@@ -2,9 +2,9 @@
 <section id="contact" class="section-contact">
     <div class="container">
         <div class="section-title">
-            <h2>Contact Us</h2>
+            <h2>Контакт</h2>
         </div>
-        <p class="section-subtitle">Get in touch with us to learn more about membership, tournaments, or any other inquiries.</p>
+        <p class="section-subtitle">Јавите нам се ради пријаве на неки од наших турнира или уписа у школу шаха.</p>
         <div class="contact-container">
             <div class="contact-info">
                 <div class="contact-item">
@@ -12,8 +12,8 @@
                         <i class="fas fa-map-marker-alt"></i>
                     </div>
                     <div>
-                        <h3>Visit Our Club</h3>
-                        <p>123 Chess Avenue, Boardgame District<br>Cityville, CV 10001</p>
+                        <h3>Адреса</h3>
+                        <p>Трг Зорана Ђинђића 4<br>21420 Бач</p>
                     </div>
                 </div>
                 <div class="contact-item">
@@ -21,8 +21,8 @@
                         <i class="fas fa-phone-alt"></i>
                     </div>
                     <div>
-                        <h3>Call Us</h3>
-                        <p>+1 (555) 123-4567<br>Monday-Friday, 10am-6pm</p>
+                        <h3>Телефон</h3>
+                        <p>069 5066771</p>
                     </div>
                 </div>
                 <div class="contact-item">
@@ -30,8 +30,8 @@
                         <i class="fas fa-envelope"></i>
                     </div>
                     <div>
-                        <h3>Email Us</h3>
-                        <p>info@knightsgambitchess.com<br>membership@knightsgambitchess.com</p>
+                        <h3>Мејл</h3>
+                        <p>kimibac@gmail.com</p>
                     </div>
                 </div>
                 <div class="contact-item">
@@ -39,22 +39,38 @@
                         <i class="fas fa-clock"></i>
                     </div>
                     <div>
-                        <h3>Club Hours</h3>
-                        <p>Monday, Wednesday, Friday: 6pm-10pm<br>Saturday: 1pm-8pm<br>Sunday: Closed</p>
+                        <h3>Радно време</h3>
+                        <p>По потреби</p>
                     </div>
                 </div>
             </div>
             <div class="contact-form">
-                <h3>Send Us a Message</h3>
+                <h3>Пошаљи нам поруку</h3>
                 <form id="contactForm" method="post" action="{% url 'contact' %}">
                     {% csrf_token %}
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your Email" required>
-                    <input type="text" name="subject" placeholder="Subject">
-                    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-                    <button type="submit">Send Message</button>
+                    <input type="text" name="name" placeholder="Име и презиме" required>
+                    <input type="tel" name="phone" placeholder="Број телефона" required>
+                    <input type="text" name="subject" placeholder="Наслов">
+                    <textarea name="message" rows="5" placeholder="Садржај поруке" required></textarea>
+                    <button type="submit">Пошаљи поруку</button>
                 </form>
             </div>
         </div>
     </div>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const schoolBtn = document.querySelector('.cta-button[href="#contact"]');
+        const subjectInput = document.querySelector('.contact-form input[name="subject"]');
+        const messageTextarea = document.querySelector('.contact-form textarea[name="message"]');
+
+        if (schoolBtn && subjectInput && messageTextarea) {
+            schoolBtn.addEventListener("click", function() {
+                subjectInput.value = "Упит у вези са школом шаха";
+                messageTextarea.value = "Молим Вас да ме позовете ради информација у вези са уписом у школу шаха.";
+            });
+        }
+    });
+    </script>
+
 </section>

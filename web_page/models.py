@@ -76,3 +76,47 @@ class ClubMember(models.Model):
         """Check if team member has an image"""
         return bool(self.image)
     
+class ClubTournament(models.Model):
+
+    class Status(models.IntegerChoices):
+        UPCOMING = 0, 'Upcoming'
+        REGISTRATION = 1, 'Registration Open'
+        ONGOING = 2, 'Ongoing'
+        COMPLETED = 3, 'Completed'
+
+    name = models.CharField(
+        'Naziv',
+        max_length=100,
+        help_text='Naziv turnira'
+    )
+
+    description = models.TextField(
+        'Opis turnira',
+        help_text='Opis turnira'
+    )
+
+    start_date = models.DateField('Početak')
+    end_date = models.DateField('Kraj')
+
+    rounds = models.PositiveIntegerField('Kola', default=0, help_text='Broj kola')
+    time_control_mins = models.PositiveIntegerField('Vreme', default=0, help_text='Vreme(minuti)')
+    increment = models.PositiveIntegerField('Dodatak', default=0, help_text='Dodatak po potezu(sekunde)')
+
+    status = models.IntegerField(
+        choices=Status.choices,
+        default=Status.UPCOMING
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['status', 'end_date']
+        verbose_name = 'Turnir'
+        verbose_name_plural = 'Turniri'
+
+    def time_control_display(self):
+        return f"{self.time_control_mins}+{self.increment}"
+
+    def __str__(self):
+        return self.name

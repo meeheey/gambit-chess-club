@@ -3,7 +3,7 @@ import random
 import chess
 from django.shortcuts import render
 
-from .models import ClubMember
+from .models import ClubMember, ClubTournament
 from puzzles.models import Puzzle
 
 # Piece symbols mapping
@@ -24,6 +24,8 @@ def remove_consecutive_duplicates(move_str):
 
 def index(request):
     club_players = ClubMember.objects.filter(is_active=True).order_by('order', '-rating')
+
+    tournaments = ClubTournament.objects.all().order_by('status', 'end_date')[:3]
 
     puzzle_ids = list(Puzzle.objects.values_list('id', flat=True))
     puzzle = Puzzle.objects.get(id=random.choice(puzzle_ids))
@@ -71,6 +73,7 @@ def index(request):
 
     return render(request, 'web_page/home.html', {
         'club_players': club_players,
+        'tournaments': tournaments,
         'puzzle': puzzle,
         'puzzle_fen': puzzle_fen,
         'puzzle_first_move': first_move,

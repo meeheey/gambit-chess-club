@@ -2,49 +2,51 @@
 <section id="tournaments" class="section-tournaments" style="background-color: #f0f0f0;">
     <div class="container">
         <div class="section-title">
-            <h2>Tournaments</h2>
+            <h2>Турнири</h2>
         </div>
-        <p class="section-subtitle">Upcoming and recent chess tournaments organized by our club. Open to members and guests.</p>
+        <p class="section-subtitle">Краљев гамбит се од свог оснивања бави организацијом шаховских турнира у општини Бач.</p>
         <div class="tournaments-container">
-            <!-- Tournament 1 -->
-            <div class="tournament-card">
-                <div class="tournament-header">
-                    <h3>Annual Championship 2024</h3>
-                    <span class="tournament-date">June 15-20, 2024</span>
-                </div>
-                <div class="tournament-details">
-                    <p>Our flagship event with over $5,000 in prizes. Open to all club members with rating above 1600.</p>
-                    <p><strong>Format:</strong> 9-round Swiss system</p>
-                    <p><strong>Time Control:</strong> 90 minutes + 30 seconds increment</p>
-                    <span class="status upcoming">Upcoming</span>
-                </div>
+         <div class="tournaments-container">
+    {% for tournament in tournaments %}
+        <div class="tournament-card">
+
+            <div class="tournament-header">
+                <h3>{{ tournament.name }}</h3>
+                <span class="tournament-date">
+                    {{ tournament.start_date|date:"j. n. Y." }}
+                    {% if tournament.end_date != tournament.start_date %}
+                        - {{ tournament.end_date|date:"j. n. Y." }}
+                    {% endif %}
+                </span>
             </div>
-            <!-- Tournament 2 -->
-            <div class="tournament-card">
-                <div class="tournament-header">
-                    <h3>Spring Open Rapid</h3>
-                    <span class="tournament-date">April 22, 2024</span>
-                </div>
-                <div class="tournament-details">
-                    <p>One-day rapid tournament perfect for beginners and intermediate players.</p>
-                    <p><strong>Format:</strong> 5-round Swiss system</p>
-                    <p><strong>Time Control:</strong> 15 minutes + 5 seconds increment</p>
-                    <span class="status ongoing">Registration Open</span>
-                </div>
+
+            <div class="tournament-details">
+                <p>{{ tournament.description }}</p>
+
+                <p>
+                    <strong>Кола:</strong>
+                    {{ tournament.rounds }}
+                </p>
+
+                <p>
+                    <strong>Темпо:</strong>
+                    {{ tournament.time_control_mins }}"
+                    {% if tournament.increment %}
+                        + {{ tournament.increment }}'
+                    {% endif %}
+                </p>
+
+                <span class="status {{ tournament.status }}">
+                    {{ tournament.get_status_display }}
+                </span>
             </div>
-            <!-- Tournament 3 -->
-            <div class="tournament-card">
-                <div class="tournament-header">
-                    <h3>Winter Blitz Championship</h3>
-                    <span class="tournament-date">January 15, 2024</span>
-                </div>
-                <div class="tournament-details">
-                    <p>Fast-paced blitz tournament completed with 42 participants.</p>
-                    <p><strong>Winner:</strong> Marcus Johnson</p>
-                    <p><strong>Runner-up:</strong> Alexandra Chen</p>
-                    <span class="status completed">Completed</span>
-                </div>
-            </div>
+
+        </div>
+    {% empty %}
+        <p style="text-align:center;">Тренутно нема доступних турнира.</p>
+    {% endfor %}
+</div>
+
         </div>
     </div>
 </section>
