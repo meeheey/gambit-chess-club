@@ -1,0 +1,50 @@
+<section id="news" class="section-news">
+<div class="container">
+<div class="section-title">
+<h2>Вести</h2>
+</div>
+
+<p class="section-subtitle">
+Најновије информације и дешавања из клуба.
+</p>
+
+<div class="articles-grid">
+
+{% for article in articles %}
+<div class="article-card article-card">
+
+<div class="article-img">
+{% if article.featured_image %}
+<img src="{{ article.featured_image.url }}" alt="{{ article.title }}" loading="lazy">
+{% else %}
+<div class="article-img-placeholder">
+<i class="fas fa-newspaper"></i>
+</div>
+{% endif %}
+</div>
+
+<div class="article-info">
+<h3>{{ article.title }}</h3>
+
+<div class="article-published">
+{{ article.published_at|date:"d.m.Y" }}
+</div>
+
+<p>
+{{ article.content|truncatewords:10 }}
+</p>
+
+<a href="{% url 'article_detail' article.pk %}" class="read-more">
+Прочитај више →
+</a>
+</div>
+
+</div>
+{% empty %}
+        <p>Вести тренутно нису доступне.</p>
+{% endfor %}
+
+</div>
+</div>
+</section>
+

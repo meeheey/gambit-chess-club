@@ -6,25 +6,27 @@
         </div>
         <p class="section-subtitle">Упознајте наше првотимце који већ годинама представљају тим у Јужнобачкој лиги.</p>
         <div class="players-grid">
-            <!-- Player 1 -->
-            {% for player in club_players %}
-            <div class="player-card">
-                <div class="player-img">
-                    {% if player.image %}
-                    <img src="{{ player.image.url }}" alt="{{ player.full_name }}" loading="lazy">
-                {% else %}
-                    <div class="player-img-placeholder">
-                        <i class="fas fa-chess-king"></i>
-                    </div>
-                {% endif %}
+    {% for player in club_players %}
+    <div class="player-card">
+        <div class="player-img">
+            {% if player.image %}
+                <img src="{{ player.image.url }}" alt="{{ player.first_name }} {{ player.last_name }}" loading="lazy">
+            {% else %}
+                <div class="player-img-placeholder">
+                    <i class="fas fa-chess-king"></i>
                 </div>
-                <div class="player-info">
-                    <h3>{{ player.first_name }} {{ player.last_name }}</h3>
-                    <div class="player-rating">Рејтинг: {{ player.rating }}</div>
-                    <p>{{ player.description }}</p>
-                </div>
-            </div>
-            {% endfor %}
+            {% endif %}
         </div>
+        <div class="player-info">
+            <h3>{{ player.first_name }} {{ player.last_name }}</h3>
+            <div class="player-rating">Рејтинг: {{ player.rating }}</div>
+            <p>{{ player.description }}</p>
+        </div>
+    </div>
+    {% empty %}
+        <p>Подаци о играчима тренутно нису доступни.</p>
+    {% endfor %}
+</div>
+
     </div>
 </section>

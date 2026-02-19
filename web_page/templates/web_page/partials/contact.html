@@ -44,33 +44,11 @@
                     </div>
                 </div>
             </div>
-            <div class="contact-form">
-                <h3>Пошаљи нам поруку</h3>
-                <form id="contactForm" method="post" action="{% url 'contact' %}">
-                    {% csrf_token %}
-                    <input type="text" name="name" placeholder="Име и презиме" required>
-                    <input type="tel" name="phone" placeholder="Број телефона" required>
-                    <input type="text" name="subject" placeholder="Наслов">
-                    <textarea name="message" rows="5" placeholder="Садржај поруке" required></textarea>
-                    <button type="submit">Пошаљи поруку</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const schoolBtn = document.querySelector('.cta-button[href="#contact"]');
-        const subjectInput = document.querySelector('.contact-form input[name="subject"]');
-        const messageTextarea = document.querySelector('.contact-form textarea[name="message"]');
-
-        if (schoolBtn && subjectInput && messageTextarea) {
-            schoolBtn.addEventListener("click", function() {
-                subjectInput.value = "Упит у вези са школом шаха";
-                messageTextarea.value = "Молим Вас да ме позовете ради информација у вези са уписом у школу шаха.";
-            });
-        }
-    });
-    </script>
+            <div class="map-wrapper">
+    <iframe  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2801.8352679486056!2d19.22756317663842!3d45.39249373821965!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475c9c4b0eb5e301%3A0x3fb580bb20714db5!2zVHJnIERyIFpvcmFuYSDEkGluxJFpxIdhIDQsIEJhxI0gMjE0MjA!5e0!3m2!1ssr!2srs!4v1771334414660!5m2!1ssr!2srs" allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+</div>
 
 </section>

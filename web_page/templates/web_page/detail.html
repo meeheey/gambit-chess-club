@@ -1,0 +1,42 @@
+{% extends "web_page/base.html" %}
+
+{% block content %}
+
+<section class="article-detail">
+    <div class="container">
+
+        <h1>{{ article.title }}</h1>
+
+        <div class="article-meta">
+            {{ article.published_at|date:"d. m. Y." }}
+        </div>
+
+        <div class="article-content">
+            {{ article.content|linebreaks }}
+        </div>
+
+          {% if article.images.all %}
+    <div class="article-gallery">
+        {% for image in article.images.all %}
+            <div class="gallery-item">
+                <a href="{{ image.image.url }}" data-lightbox="gallery" 
+                   {% if image.caption %}title="{{ image.caption }}"{% endif %}>
+                    <img src="{{ image.image.url }}" 
+                         alt="{% if image.caption %}{{ image.caption }}{% else %}Gallery image {{ forloop.counter }}{% endif %}">
+                </a>
+                {% if image.caption %}
+                    <p class="caption">{{ image.caption }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+    </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+
+</section>
+
+{% endblock %}

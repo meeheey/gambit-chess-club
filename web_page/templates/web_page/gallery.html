@@ -1,0 +1,28 @@
+{% extends "web_page/base.html" %}
+
+{% block content %}
+
+<section class="gallery-section">
+    <div class="container">
+        <h2 class="section-title">Галерија</h2>
+
+        <div class="gallery-grid">
+            {% for img in images %}
+                <div class="gallery-item">
+                    <a href="{{ img.image.url }}" data-lightbox="gallery">
+                        <img src="{{ img.image.url }}" alt="{{ img.caption }}">
+                    </a>
+                </div>
+            {% empty %}
+                <p>Тренутно нема објављених слика.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+
+</section>
+
+
+{% endblock %}

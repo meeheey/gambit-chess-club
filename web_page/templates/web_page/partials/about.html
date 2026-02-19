@@ -20,45 +20,28 @@
     <span class="puzzle-subtitle">Нађи најбољи потез за белог</span>
   </div>
 
-  <div id="chessBoard"></div>
+  <div class="chessboard-wrapper"></div>
+  <div id="chessBoard" data-fen="{{ puzzle_fen }}"></div>
 
   <div class="puzzle-solution">
     <strong>Решење: </strong> <span class="spoiler">{{ puzzle_solution|safe }}</span>
 </div>
+  </div>
+</div>
 
 </div>
 </div>
 
-        <!-- jQuery -->
+<!-- jQuery -->
 <script src="/static/js/jquery-3.6.0.min.js"></script>
 
 <!-- Chessboard.js -->
 <link rel="stylesheet" href="/static/css/chessboard-1.0.0.min.css">
 <script src="/static/js/chessboard-1.0.0.min.js"></script>
 
-<script>
-$(document).ready(function() {
-    try {
-        var board = ChessBoard('chessBoard', {
-            position: '{{ puzzle_fen|escapejs }}',
-            draggable: false,
-            pieceTheme: '/static/img/chesspieces/wikipedia/{piece}.png'
-        });
+<script src="/static/js/puzzle.js"></script>
 
-    } catch (err) {
-        console.error(err);
-        $('.puzzle').html('<p style="text-align:center;">Chessboard failed to load</p>');
-    }
-});
-</script>
-
-<script>
-$(document).ready(function() {
-    $('.spoiler').click(function() {
-        $(this).toggleClass('revealed');
-    });
-});
-</script>
+<script src="/static/js/spoiler.js"></script>
 
 
     </div>

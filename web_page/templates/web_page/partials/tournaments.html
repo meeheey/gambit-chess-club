@@ -5,48 +5,47 @@
             <h2>Турнири</h2>
         </div>
         <p class="section-subtitle">Краљев гамбит се од свог оснивања бави организацијом шаховских турнира у општини Бач.</p>
+        
+        <!-- Only ONE tournaments-container div -->
         <div class="tournaments-container">
-         <div class="tournaments-container">
-    {% for tournament in tournaments %}
-        <div class="tournament-card">
+            {% for tournament in tournaments %}
+                <div class="tournament-card">
+                    <div class="tournament-header">
+                        <h3>{{ tournament.name }}</h3>
+                        <span class="tournament-date">
+                            {{ tournament.start_date|date:"j. n. Y." }}
+                            {% if tournament.end_date != tournament.start_date %}
+                                - {{ tournament.end_date|date:"j. n. Y." }}
+                            {% endif %}
+                        </span>
+                    </div>
 
-            <div class="tournament-header">
-                <h3>{{ tournament.name }}</h3>
-                <span class="tournament-date">
-                    {{ tournament.start_date|date:"j. n. Y." }}
-                    {% if tournament.end_date != tournament.start_date %}
-                        - {{ tournament.end_date|date:"j. n. Y." }}
-                    {% endif %}
-                </span>
-            </div>
-
-            <div class="tournament-details">
-                <p>{{ tournament.description }}</p>
-
-                <p>
-                    <strong>Кола:</strong>
-                    {{ tournament.rounds }}
-                </p>
-
-                <p>
-                    <strong>Темпо:</strong>
-                    {{ tournament.time_control_mins }}"
-                    {% if tournament.increment %}
-                        + {{ tournament.increment }}'
-                    {% endif %}
-                </p>
-
-                <span class="status {{ tournament.status }}">
-                    {{ tournament.get_status_display }}
-                </span>
-            </div>
-
-        </div>
-    {% empty %}
-        <p style="text-align:center;">Тренутно нема доступних турнира.</p>
-    {% endfor %}
-</div>
-
+                    <div class="tournament-details">
+                        <p>{{ tournament.description }}</p>
+                        <p>
+                            <strong>Кола:</strong>
+                            {{ tournament.rounds }}
+                        </p>
+                        <p>
+                            <strong>Темпо:</strong>
+                            {{ tournament.time_control_mins }}'
+                            {% if tournament.increment %}
+                                + {{ tournament.increment }}"
+                            {% endif %}
+                        </p>
+                            <span class="status 
+                                {% if tournament.status == 0 %}upcoming
+                                {% elif tournament.status == 1 %}registration
+                                {% elif tournament.status == 2 %}ongoing
+                                {% elif tournament.status == 3 %}completed
+                                {% endif %}">
+                                {{ tournament.get_status_display }}
+                            </span>
+                    </div>
+                </div>
+            {% empty %}
+                <p style="text-align:center;">Тренутно нема доступних турнира.</p>
+            {% endfor %}
         </div>
     </div>
 </section>

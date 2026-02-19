@@ -12,19 +12,19 @@
             <div class="footer-column">
                 <h3>Брзи линкови</h3>
                 <ul>
-                    <li><a href="#players">Наши играчи</a></li>
-                    <li><a href="#tournaments">Турнири</a></li>
-                    <li><a href="#league">Јужнобачка лига</a></li>
-                    <li><a href="#about">О нама</a></li>
-                    <li><a href="#contact">Контакт</a></li>
+                    <li><a href="{% url 'home' %}#about">О нама</a></li>
+                    <li><a href="{% url 'home' %}#news">Вести</a></li>
+                    <li><a href="{% url 'home' %}#tournaments">Турнири</a></li>
+                    <li><a href="{% url 'home' %}#league">Лига</a></li>
+                    <li><a href="{% url 'home' %}#players">Наши играчи</a></li>
+                    <li><a href="{% url 'home' %}#contact">Контакт</a></li>
                 </ul>
             </div>
             <div class="footer-column">
                 <h3>Сазнај више</h3>
                 <ul>
-                    <li><a href="#">Чланство</a></li>
-                    <li><a href="#">Клупске вести</a></li>
-                    <li><a href="#">Галерија</a></li>
+                    <li><a href="{% url 'article_list' %}">Архива клупских вести</a></li>
+                    <li><a href="{% url 'gallery' %}">Галерија</a></li>
                 </ul>
             </div>
         </div>

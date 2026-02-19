@@ -43,20 +43,5 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
-    // Form submission handling
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            
-            // In a real Django app, you would send this via fetch/AJAX
-            // For now, we'll show a success message
-            alert('Thank you for your message! We will get back to you soon.');
-            this.reset();
-        });
-    }
+
 });
